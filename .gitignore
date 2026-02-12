@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+# Ignorar carpeta de Firebase
+src/main/resources/Firebase/
+
+# Ignorar cualquier archivo JSON
+*.json
