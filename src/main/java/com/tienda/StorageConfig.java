@@ -26,9 +26,7 @@ public class StorageConfig {
         try (InputStream inputStream = resource.getInputStream()) {
             GoogleCredentials credentials = GoogleCredentials.fromStream(inputStream);
             return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
-
         }
-
     }
-
+    
 }
