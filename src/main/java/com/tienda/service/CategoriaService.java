@@ -65,5 +65,24 @@ public class CategoriaService {
             throw new IllegalStateException("No se puede eliminar la categoria. Tiene datos asociados.", e);
         }
     }
+    
+    
+    //Consultas Avanzadas Categoria
+    
+    @Transactional(readOnly = true)
+public List<Categoria> consultaCategoriaDerivada(String textoDescripcion) {
+    return categoriaRepository.findByActivoTrueAndDescripcionContaining(textoDescripcion);
+}
+
+@Transactional(readOnly = true)
+public List<Categoria> consultaCategoriaJPQL(int cantidadMinProductos, String textoDescripcion) {
+    return categoriaRepository.consultaCategoriaJPQL(cantidadMinProductos, textoDescripcion);
+}
+
+@Transactional(readOnly = true)
+public List<Categoria> consultaCategoriaSQL(int cantidadMinProductos, String textoDescripcion) {
+    return categoriaRepository.consultaCategoriaSQL(cantidadMinProductos, textoDescripcion);
+}
+
 }
  

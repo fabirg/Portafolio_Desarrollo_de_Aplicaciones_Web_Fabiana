@@ -65,23 +65,57 @@ public class ProductoService {
             throw new IllegalStateException("No se puede eliminar la producto. Tiene datos asociados.", e);
         }
     }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaDerivada(double precioInf, double precioSup) {
+        return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaJPQL(double precioInf, double precioSup) {
+        return productoRepository.consultaJPQL(precioInf, precioSup);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQL(double precioInf, double precioSup) {
+        return productoRepository.consultaSQL(precioInf, precioSup);
+    }
     
-    @Transactional (readOnly = true)
-public List<Producto> consultaDerivada (double precioInf, double precioSup) {
-return productoRepository.findByPrecioBetweenOrderByPrecioAsc (precioInf, precioSup);
+    
+    //Consultas Avanzadas Producto
+    
+    @Transactional(readOnly = true)
+public List<Producto> consultaAvanzadaDerivada(
+        double precioMin,
+        double precioMax,
+        int existenciasMin,
+        String descripcionCategoria) {
 
+    return productoRepository
+            .findByActivoTrueAndPrecioBetweenAndExistenciasGreaterThanAndCategoria_ActivoTrueAndCategoria_DescripcionContainingOrderByPrecioAsc(
+                    precioMin, precioMax, existenciasMin, descripcionCategoria);
 }
 
-@Transactional (readOnly = true)
-public List<Producto> consultaJPQL (double precioInf, double precioSup) {
-return productoRepository.consultaJPQL(precioInf, precioSup);
+@Transactional(readOnly = true)
+public List<Producto> consultaAvanzadaJPQL(
+        double precioMin,
+        double precioMax,
+        int existenciasMin,
+        String descripcionCategoria) {
 
+    return productoRepository
+            .consultaAvanzadaJPQL(precioMin, precioMax, existenciasMin, descripcionCategoria);
 }
 
-@Transactional (readOnly = true)
-public List<Producto> consultaSQL (double precioInf, double precioSup) {
-return productoRepository.consultaSQL (precioInf, precioSup);
+@Transactional(readOnly = true)
+public List<Producto> consultaAvanzadaSQL(
+        double precioMin,
+        double precioMax,
+        int existenciasMin,
+        String descripcionCategoria) {
 
+    return productoRepository
+            .consultaAvanzadaSQL(precioMin, precioMax, existenciasMin, descripcionCategoria);
 }
 
 }
