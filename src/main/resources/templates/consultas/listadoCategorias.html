@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Listado Categorías</title>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container py-4">
+
+    <h2 class="text-center mb-4">
+        Resultado Consulta Categorías
+    </h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Activo</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="c : ${categorias}">
+
+            <td th:text="${c.idCategoria}"></td>
+
+            <td th:text="${c.descripcion}"></td>
+
+            <td th:text="${c.activo}"></td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
